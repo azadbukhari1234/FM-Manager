@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Facility Management Manager App for efficient task and job management">
-    <script src="https://cdn.tailwindcss.com"></script>    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>  
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="C:\Projects\FM Manager\style.js">
     <title>FM-app</title>
   </head>
@@ -28,7 +30,7 @@
         
         <!--nav visible in large screen-->
         <nav id="large-menu" class="navbar hidden md:flex md:text-xl mr-4">
-          <a href="@" id="new-job-large" class="mx-2 text-pink-500 font-semibold hover:font-bold hover:text-blue-700 active:text-white">New Job</a>
+          <a href="#" id="new-job-large" class="mx-2 text-pink-500 font-semibold hover:font-bold hover:text-blue-700 active:text-white">New Job</a>
           <a href="#" class="mx-2 hover:font-bold hover:text-violet-500 active:text-sky-400">Dashboard</a>
           <a href="#" class="mx-2 hover:font-bold hover:text-violet-500 active:text-sky-400">Department</a>
           <a href="#" class="mx-2 hover:font-bold hover:text-violet-500 active:text-sky-400">Contact</a>
@@ -38,7 +40,7 @@
     <!--top nav for mobile screen-->
     <div id="mobile-menu" class="md:hidden bg-pink-200">
       <nav class="flex flex-col ml-4 py-2 font-semibold">
-        <a href="form" id="new-job-mobile" class="md:hidden mx-2 text-violet-700 font-semibold hover:font-bold hover:text-blue-700 active:text-white">New Job</a>
+        <a href="#" id="new-job-mobile" class="md:hidden mx-2 text-violet-700 font-semibold hover:font-bold hover:text-blue-700 active:text-white">New Job</a>
         <a href="#" class="mx-2 hover:font-bold hover:text-violet-500 active:text-sky-400">Dashboard</a>
         <a href="#" class="mx-2 hover:font-bold hover:text-violet-500 active:text-sky-400">Department</a>
         <a href="#" class="mx-2 hover:font-bold hover:text-violet-500 active:text-sky-400">Contact</a>
@@ -46,30 +48,42 @@
     </div>
 
     <!--new job-->
-    <dialog id="new-job-dialog" class="container border-2 shadow-xl md:w-1/3 w-2/3 border-teal-400 rounded-2xl my-auto mx-auto px-3">
+    <dialog id="new-job-dialog" class="container border-2 shadow-xl w-11/12 md:w-2/3 lg:w-1/3 border-teal-400 rounded-2xl my-auto mx-auto px-3">
       <h2 class="text-xl md:text-2xl pt-3 mt-3 mb-4 text-center">Fill in the form to make a new report.</h2>
         <form id="new-job-form">
         <div>
           <label for="name" class="text-md md:text-lg/10 ">Name:</label>
-          <input type="text" id="name" name="report-name" class="my-2 px-2 h-8 text-lg mt-1 rounded-md w-full focus:outline-purple-500 border-2 border-teal-400">
+          <input type="text" id="name" name="report-name" class="my-2 px-2 h-8 mt-1 rounded-md w-full border-2 border-teal-400 focus:outline-purple-500">
         </div>
+        <!--breakdown type-->
+        <div>
+          <label for="failure-type" class="text-md md:text-lg/10">Failure Type:</label>
+          <select id="failuretype" name="failuretype" class="border-2 border-teal-400 h-8 col-start-1 row-start-1 w-full appearance rounded-md bg-white py-auto pr-8 pl-1 text-base text-lg outline-1 -outline-offset-2 outline-teal-300 focus:outline-2 focus:-outline-offset-1 focus:outline-purple-500 sm:text-sm/6">
+            <option>Lighting</option>
+            <option>Aircond</option>
+            <option>Plumbing</option>
+            <option>Electrical</option>
+            <option>Door/Window</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <!--department-->
         <div>
           <label for="department" class="text-md md:text-lg/10">Department:</label>
           <select id="department" name="department" class="border-2 border-teal-400 h-8 col-start-1 row-start-1 w-full appearance rounded-md bg-white py-auto pr-8 pl-1 text-base text-lg outline-1 -outline-offset-2 outline-teal-300 focus:outline-2 focus:-outline-offset-1 focus:outline-purple-500 sm:text-sm/6">
             <option>Account</option>
-            <option>Recovery</option>
-            <option>Retail</option>
-            <option>Inventory</option>
+            <option>Operation</option>
             <option>Warehouse</option>
+            <option>Recovery</option>
           </select>
         </div>
         <div>
           <label class="text-md md:text-lg/10">Location:</label>
-          <input type="text" class="my-2 px-2 h-8 mt-1 rounded-md w-full border-2 border-teal-400 focus:outline-purple-500">
+          <input type="text" id="report-location" class="my-2 px-2 h-8 mt-1 rounded-md w-full border-2 border-teal-400 focus:outline-purple-500">
         </div>
         <div>
           <label class="text-md md:text-lg/10">Report:</label>
-          <textarea type="text" class="my-2 px-2 mb-3 h-8 mt-1 rounded-md w-full whitespace-normal border-2 border-teal-400 focus:outline-purple-500"></textarea>
+          <textarea type="text" id="report-details" class="my-2 px-2 mb-3 mt-1 rounded-md w-full whitespace-normal border-2 border-teal-400 focus:outline-purple-500 h-10"></textarea>
         </div>
         <div class="flex gap-2">
           <button type="submit" class="w-full justify-center bg-teal-200 rounded-md px-3 py-2 hover:bg-teal-400 hover:text-white hover:font-bold active:bg-blue-500 mb-6">Submit</button>
@@ -84,10 +98,10 @@
   <!--center frame of content-->
   <main class="mx-auto justify-center">
     <!--dashboard-->
-    <section class="md:flex px-5 justify-between grid grid-cols-2 md:grid-cols-2 my-2">
+    <section class="flex px-3 justify-between my-2">
       <h class="md:text-5xl text-4xl font-bold text-purple-600">Dashboard</h>
       <!--account & photo-->
-      <div class="flex justify-center">
+      <div class="flex">
         <div class="text-right md:mr-4 pr-1 my-auto font-semibold text-xs md:text-lg">
           <h1>Hi, John Doe</h1>
           <span>Lead Electrical Dept</span>
@@ -128,81 +142,31 @@
       <section class="bg-yellow-300 md:w-1/2px w-full h-fit rounded-2xl pt-2 px-1">
         <h1 class="font-bold text-2xl ml-3 mb-2">Daily Task</h1>
         <!--scroll daily task-->
-        <div class="overflow-y-scroll h-64 flex-shrink-0 px-1 mb-3 w-full justify-between space-y-1">
+        <div id="daily-task-list" class="overflow-y-scroll h-64 flex-shrink-0 px-1 mb-3 w-full justify-between space-y-1">
           <!--the task box-->
-          <div id="task from form" class="container bg-yellow-100 rounded-xl w-full py-2 px-3">
-            <div class="flex justify-between">
-              <h2 class="text-xl font-semibold">Retail Mart</h2>
-              <h2 class="text-lg">W002-051725</h2>
-            </div>
-            <h2 class="text-lg">Aircond not cool, please service, thank you</h2>
-            <div class="flex justify-between text-md">
-              <h2>Today</h2>
-              <h2>8:30 am</h2>
-              <h2 id="department">Finance</h2>
-            </div>
-          </div>
-          <div id="task" class="container bg-yellow-100 rounded-xl w-full py-2 px-3">
-            <div class="flex justify-between">
+          <div id="task-from-form" class="task-card container flex bg-yellow-100 rounded-xl w-full py-2 px-3 space-y-1">
+            <div class="w-3/4">
               <h2 class="text-xl font-semibold">Function Room</h2>
-              <h2 class="text-lg">W003-051725</h2>
+              <div class="flex">
+                <span id="failuretype">Aircond</span>
+                <span class="ml-2 px-2 py-0.5 text-xs font-semibold text-red-800 bg-red-200 rounded-full">High Priority</span>
+              </div>
+                  <div class="flex">
+                    <p class="md:text-lg text-md w-4/6 md:w-full task-description truncate md:whitespace-normal">Aircond not cool enough, please service. thank you.</p>
+                    <button class="text-sm text-blue-600 hover:underline md:hidden toggle-description-btn">Show more</button>
+                  </div>
+                  <div class="flex justify-between text-md md:w-3/4 w-5/6">
+                    <span>Today</span> at <span>8:30 am</span>
+                    <span id="name" class="ml-2">Fatiha</span>
+                    <span id="department">Operation</span>
+                  </div>
+            </div>    
+            <div class="take-action w-1/4 text-right space-y-1">
+              <h2 id="workorder" class="wo-number text-md">W002/051725</h2>
+              <button id="takejob" class="w-24 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600">Take Job</button>
+              <button id="complete" name="compltask" class="w-24 py-1 text-sm bg-green-500 text-white rounded hover:bg-teal-500">Complete</button>
             </div>
-            <h2 class="text-lg">Light broken, please replace, thank you</h2>
-            <div class="flex justify-between text-md">
-              <h2>Today</h2>
-              <h2>9:00 am</h2>
-              <h2 id="department">Recovery</h2>
             </div>
-          </div>
-          <div id="task" class="container bg-yellow-100 rounded-xl w-full py-2 px-3">
-            <div class="flex justify-between">
-              <h2 class="text-xl font-semibold">Operation Dept</h2>
-              <h2 class="text-lg">W004-051825</h2>
-            </div>
-            <h2 class="text-lg">Door knob stuck, please fix it</h2>
-            <div class="flex justify-between text-md">
-              <h2>Today</h2>
-              <h2>10:00 am</h2>
-              <h2 id="department">Retail</h2>
-            </div>
-          </div>
-          <div id="task from formNJ" class="container bg-yellow-100 rounded-xl w-full py-2 px-3">
-            <div class="flex justify-between">
-              <h2 class="text-xl font-semibold">Retail Mart</h2>
-              <h2 class="text-lg">W002-051725</h2>
-            </div>
-            <h2 class="text-lg">Aircond not cool, please service, thank you</h2>
-            <div class="flex justify-between text-md">
-              <h2>Today</h2>
-              <h2>8:30 am</h2>
-              <h2 id="department">Finance</h2>
-            </div>
-          </div>
-          <div id="task" class="container bg-yellow-100 rounded-xl w-full py-2 px-3">
-            <div class="flex justify-between">
-              <h2 class="text-xl font-semibold">Function Room</h2>
-              <h2 class="text-lg">W003-051725</h2>
-            </div>
-            <h2 class="text-lg">Light broken, please replace, thank you</h2>
-            <div class="flex justify-between text-md">
-              <h2>Today</h2>
-              <h2>9:00 am</h2>
-              <h2 id="department">Recovery</h2>
-            </div>
-          </div>
-          <div id="task" class="container bg-yellow-100 rounded-xl w-full py-2 px-3">
-            <div class="flex justify-between">
-              <h2 class="text-xl font-semibold">Operation Dept</h2>
-              <h2 class="text-lg">W004-051825</h2>
-            </div>
-            <h2 class="text-lg">Door knob stuck, please fix it</h2>
-            <div class="flex justify-between text-md">
-              <h2>Today</h2>
-              <h2>10:00 am</h2>
-              <h2 id="department">Retail</h2>
-            </div>
-          </div>
-                 
         </div>
       </section>
 
@@ -210,68 +174,59 @@
       <section class="container bg-cyan-300 md:w-1/2px w-full pb-1 rounded-2xl px-2">
         <h1 class="font-bold text-2xl ml-3 py-2">Complete Task</h1>
         <!--scroll complete task-->
-        <div class="flex overflow-x-scroll h-64 mx-auto w-full justify-between pb-1 space-x-1">
+        <div id="completetaskphoto" class="flex overflow-x-scroll h-64 mx-auto w-full justify-between pb-1 space-x-1">
           
           <!--the task box-->
-          <div id="done" class="flex-shrink-0 bg-cyan-100 rounded-xl w-64 ">
+          <div id="complete-task" class="flex-shrink-0 bg-cyan-100 rounded-xl w-64 ">
               <div class="flex justify-between mx-3">
-                <h2 class="text-xl font-semibold">Retail Mart</h2>
-                <h2 class="text-sm my-auto">WO02-051325</h2>
+                <h2 id="report-location" class="text-xl font-semibold">Retail Mart</h2>
+                <h2 id="workorder" class="text-sm my-auto">WO02-051325</h2>
               </div>
-              <img src="images/photo1.png" alt="complete images" loading="lazy" class="px-2 object-cover">
+              <img id="completephoto" src="images/photo1.png" alt="complete images" class="px-2 object-cover">
               <div class="flex justify-between px-3">
-                <span>30 minutes ago</span>
-                <span>Mr. Zulkifli</span>
+                <span id="submittime">30 minutes ago</span>
+                <span id="technician">Mr. Zulkifli</span>
               </div>
           </div>
-          <div id="done" class="flex-shrink-0 bg-cyan-100 rounded-xl w-64">
-              <div class="flex justify-between mx-3">
-                <h2 class="text-xl font-semibold">Warehouse</h2>
-                <h2 class="text-sm my-auto">WO020-051325</h2>
-              </div>
-              <img src="images/photo2.png" alt="complete images" loading="lazy" class="px-2 object-cover">
-              <div class="flex justify-between px-3">
-                <span>2 hours ago</span>
-                <span>Mr. Farhan</span>
-              </div>
-          </div>
-          <div id="done" class="flex-shrink-0 bg-cyan-100 rounded-xl w-64">
-              <div class="flex justify-between mx-3">
-                <h2 class="text-xl font-semibold">Recovery Hall</h2>
-                <h2 class="text-sm my-auto">WO020-051325</h2>
-              </div>
-              <img src="images/photo3.png" alt="complete images" loading="lazy" class="px-2 object-cover">
-              <div class="flex justify-between px-3">
-                <span>4 hours ago</span>
-                <span>Mr. Azhar</span>
-              </div>
-          </div>
-          <div id="done" class="flex-shrink-0 bg-cyan-100 rounded-xl w-64">
-              <div class="flex justify-between mx-3">
-                <h2 class="text-xl font-semibold">Engine Room</h2>
-                <h2 class="text-sm my-auto">WO020-051325</h2>
-              </div>
-              <img src="images/photo4.jpg" alt="complete images" loading="lazy" class="px-2 object-cover">
-              <div class="flex justify-between px-3">
-                <span>2 hours ago</span>
-                <span>Mr. Zulkifli</span>
-              </div>
-          </div>
-          <div id="done" class="flex-shrink-0 bg-cyan-100 rounded-xl w-64">
-              <div class="flex justify-between mx-3">
-                <h2 class="text-xl font-semibold">Kitchen</h2>
-                <h2 class="text-sm my-auto">WO020-051325</h2>
-              </div>
-              <img src="images/photo5.jpg" alt="complete images" loading="lazy" class="px-2 object-cover">
-              <div class="flex justify-between px-3">
-                <span>2 hours ago</span>
-                <span>Mr. Zulkifli</span>
-              </div>
-          </div>
- 
         </div>
-
       </section>
+
+      <!-- Dialog for selecting technician -->
+  <dialog id="techbox" name="techdialogbox" class="md:dialog-overlay container border-2 shadow-xl text-center w-4/6 md:w-64 h-40 border-teal-400 rounded-xl my-auto mx-auto px-3">
+    <form id="techniciandialog" class="dialog-box font-sans">
+      <h3 class="font-semibold text-xl text-center px-1 pt-2 pb-2">Select this job!</h3>
+      <span>Technician Name:</span>
+      <select id="technician-select" class="border-2 border-blue-500 rounded w-full py-1 px-2">
+        <option value="" disabled selected>Select Technician</option>
+        <option value="Badrul Deraman">Badrul Deraman - Civil</option>
+        <option value="Ibrahim Masnor">Ibrahim Masnor - Electrical</option>
+        <option value="Haikal Ahmad">Haikal Ahmad - AirCond</option>
+        <option value="Lai Wintan">Lai Wintan - Elevation</option>
+        <option value="Azhar Marzuki">Azhar Marzuki - General</option>
+      </select>
+      <div class="grid grid-cols-2 pt-2 gap-2">
+        <button id="submit-technician" type="submit" onclick="submitTechnician()" class="py-1 bg-blue-300 rounded active:bg-blue-500">Submit</button>
+        <button id="cancel-techbox" onclick="cancel(),reset()"  class="py-1 bg-red-300 rounded active:bg-red-500" >Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+      <!-- Dialog for uploading photo -->
+  <dialog id="subphoto" name="uploadphotodialog" class="md:dialog-overlay container border-2 shadow-xl text-center w-4/6 md:w-80 h-40 border-teal-400 rounded-xl my-auto mx-auto px-3">
+    <form id="tosubmitphoto" class="dialog-box">
+      <h3 class="font-semibold text-xl text-center px-1 pt-2">Congratulations, you did it!</h3>
+      <h3 class="text-sm text-center px-1 pb-3">Show what you have done with photo</h3>
+      <input type="file" id="photo-upload" accept="image/*">
+      <div class="grid grid-cols-2 pt-2 gap-2">
+        <button id="submittask" class="py-1 bg-blue-300 rounded active:bg-blue-500">Submit</button>
+        <button id="cancelupldialog" class="py-1 bg-red-300 rounded active:bg-red-500">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+
+
+
 
     </div>
 
@@ -287,10 +242,11 @@
         <p class="text-xs">© 2025 Facility Management Manager App. All rights reserved.</p>
     </footer>
 
+    
     </div>
   </main>
- 
+
 <script src="newjob.js"></script>
-<script src="formsubmit.js"></script>
+
 </body>
 </html>
