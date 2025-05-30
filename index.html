@@ -146,13 +146,13 @@
           <!--the task box-->
           <div id="task-from-form" class="task-card container flex bg-yellow-100 rounded-xl w-full py-2 px-3 space-y-1">
             <div class="w-3/4">
-              <h2 class="text-xl font-semibold">Function Room</h2>
+              <h2 id="labelLocation" class="text-xl font-semibold">Function Room</h2>
               <div class="flex">
                 <span id="failuretype">Aircond</span>
                 <span class="ml-2 px-2 py-0.5 text-xs font-semibold text-red-800 bg-red-200 rounded-full">High Priority</span>
               </div>
                   <div class="flex">
-                    <p class="md:text-lg text-md w-4/6 md:w-full task-description truncate md:whitespace-normal">Aircond not cool enough, please service. thank you.</p>
+                    <p id="reportdetails" class="md:text-lg text-md w-4/6 md:w-full task-description truncate md:whitespace-normal">Aircond not cool enough, please service. thank you.</p>
                     <button class="text-sm text-blue-600 hover:underline md:hidden toggle-description-btn">Show more</button>
                   </div>
                   <div class="flex justify-between text-md md:w-3/4 w-5/6">
@@ -205,8 +205,8 @@
         <option value="Azhar Marzuki">Azhar Marzuki - General</option>
       </select>
       <div class="grid grid-cols-2 pt-2 gap-2">
-        <button id="submit-technician" type="submit" onclick="submitTechnician()" class="py-1 bg-blue-300 rounded active:bg-blue-500">Submit</button>
-        <button id="cancel-techbox" onclick="cancel(),reset()"  class="py-1 bg-red-300 rounded active:bg-red-500" >Cancel</button>
+        <button id="submit-technician" type="submit" class="py-1 bg-blue-300 rounded active:bg-blue-500">Submit</button>
+        <button id="cancel-techbox" class="py-1 bg-red-300 rounded active:bg-red-500" >Cancel</button>
       </div>
     </form>
   </dialog>
