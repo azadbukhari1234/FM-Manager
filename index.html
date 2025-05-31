@@ -59,12 +59,12 @@
         <div>
           <label for="failure-type" class="text-md md:text-lg/10">Failure Type:</label>
           <select id="failuretype" name="failuretype" class="border-2 border-teal-400 h-8 col-start-1 row-start-1 w-full appearance rounded-md bg-white py-auto pr-8 pl-1 text-base text-lg outline-1 -outline-offset-2 outline-teal-300 focus:outline-2 focus:-outline-offset-1 focus:outline-purple-500 sm:text-sm/6">
-            <option>Lighting</option>
-            <option>Aircond</option>
-            <option>Plumbing</option>
-            <option>Electrical</option>
-            <option>Door/Window</option>
-            <option>Other</option>
+            <option class="priority-type:High Priority text-red-800 bg-red-200 rounded-full">Lighting</option>
+            <option class="priority-type:Medium Priority text-orange-800 bg-orange-200 rounded-full">Aircond</option>
+            <option class="priority-type:Medium Priority text-orange-800 bg-orange-200 rounded-full">Plumbing</option>
+            <option class="priority-type:High Priority text-red-800 bg-red-200 rounded-full">Electrical</option>
+            <option class="priority-type:Less Priority text-green-800 bg-green-200 rounded-full">Door/Window</option>
+            <option class="priority-type:Less Priority text-green-800 bg-green-200 rounded-full">Other</option>
           </select>
         </div>
         <!--department-->
@@ -149,7 +149,7 @@
               <h2 id="labelLocation" class="text-xl font-semibold">Function Room</h2>
               <div class="flex">
                 <span id="failuretype">Aircond</span>
-                <span class="ml-2 px-2 py-0.5 text-xs font-semibold text-red-800 bg-red-200 rounded-full">High Priority</span>
+                <span class="priority-type ml-2 px-2 py-0.5 text-xs font-semibold text-red-800 bg-red-200 rounded-full">High Priority</span>
               </div>
                   <div class="flex">
                     <p id="reportdetails" class="md:text-lg text-md w-4/6 md:w-full task-description truncate md:whitespace-normal">Aircond not cool enough, please service. thank you.</p>
@@ -180,12 +180,13 @@
           <div id="complete-task" class="flex-shrink-0 bg-cyan-100 rounded-xl w-64 ">
               <div class="flex justify-between mx-3">
                 <h2 id="report-location" class="text-xl font-semibold">Retail Mart</h2>
-                <h2 id="workorder" class="text-sm my-auto">WO02-051325</h2>
+                <h2 id="workorder" class="text-sm mt-2">WO02-051325</h2>
               </div>
               <img id="completephoto" src="images/photo1.png" alt="complete images" class="px-2 object-cover">
-              <div class="flex justify-between px-3">
-                <span id="submittime">30 minutes ago</span>
-                <span id="technician">Mr. Zulkifli</span>
+              <div class="text-xs flex justify-between px-2 pt-1">
+                <span id="submit-time">30 minutes ago</span>
+                <span id="technician-select">Mr. Zulkifli</span>
+                <button class="delete-completed-task text-red-600" style="background:none;border:none;">🗑️</button>
               </div>
           </div>
         </div>
@@ -246,7 +247,7 @@
     </div>
   </main>
 
-<script src="test1.js"></script>
+<script src=".js"></script>
 
 </body>
 </html>
